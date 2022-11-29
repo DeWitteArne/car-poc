@@ -10,7 +10,6 @@ input NewOwner {
 }
 
 input UpdateOwner{
-    id: ID!
     name: String!
     firstName: String!
 }
@@ -22,6 +21,6 @@ type Query {
 
 type Mutation {
     createOwner(input: NewOwner!): Owner!
-    replaceOwner(input: UpdateOwner!): Boolean
-    deleteOwner(id:String!): Boolean
+    replaceOwner(id: String!, input: UpdateOwner!): Boolean
+    deleteOwner(id: String!): Boolean
 }

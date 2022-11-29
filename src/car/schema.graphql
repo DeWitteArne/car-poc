@@ -12,19 +12,16 @@ input NewCar{
     model: String!
     color: String!
     price: Float!
-    ownerId: String!
+    owner: String!
 }
-
-
 
 extend type Query{
     cars: [Car!]
-    car: Car!
+    car(id: String!): Car!
 }
 
 
 input UpdateCar{
-    id: ID!
     name: String!
     model: String!
     color: String!
@@ -33,6 +30,6 @@ input UpdateCar{
 
 extend type Mutation {
     createCar(input: NewCar!): Car!
-    replaceCar(input: UpdateCar!): Boolean
-    deleteCar(id:String!): Boolean
+    replaceCar(id: String!, input: UpdateCar!): Boolean
+    deleteCar(id: String!): Boolean
 }

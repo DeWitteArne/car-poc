@@ -1,19 +1,13 @@
-import { Module } from '@nestjs/common';
-import { CarModule } from './car/car.module';
-import { OwnerModule } from './owner/owner.module';
-import { MongooseModule } from '@nestjs/mongoose';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver } from '@nestjs/apollo';
+import {Module} from '@nestjs/common';
+import {CarModule} from './car/car.module';
+import {OwnerModule} from './owner/owner.module';
+import {MongooseModule} from '@nestjs/mongoose';
+import {GraphQLModule} from '@nestjs/graphql';
+import {ApolloDriver} from '@nestjs/apollo';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/car-poc', {
-      connectionFactory: (connection) => {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        connection.plugin(require('mongoose-autopopulate'));
-        return connection;
-      },
-    }),
+    MongooseModule.forRoot('mongodb://localhost/car-poc'),
 
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
@@ -23,4 +17,5 @@ import { ApolloDriver } from '@nestjs/apollo';
     OwnerModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+}
